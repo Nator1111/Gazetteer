@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="utf-8">
+    <title>GAZETTEER APP</title>
+
+    <meta name = "viewport" content ="width=device-width, initial-scale=1.0">
+    <meta name="description" content="App That Returns Country Information">
+	<meta name="author" content="James Brierley">
+
+    <link href = "favicon-16x16.png" rel="icon">
+    <link href = "vendors/bootstrap-4.5.3-dist/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+   <link rel ="stylesheet" type = "text/css" href="./css/Style.css">
+   <link rel ="stylesheet" type = "text/css" href="./css/normalize.css">
+
+</head>
+<body>
+    <!--Splash page -->
+    
+    <div id = "splashdiv" >
+        <img class = "splash-info" src = "images/Gazetteer.png" alt = "Gazetteer logo" ID = "gazetteer-logo">
+        <p class = "splash-info" id = "splash-text">PRESS ENTER TO BEGIN:</p>
+        <button class = "splash-info" id="splash-button">ENTER</button>  
+    </div>
+    
+    <!-- Header -->
+    <header id = "header">
+        <img src = "images/Gazetteer.png" alt = "Gazetteer Logo">
+        <button onclick = "getLocationLeaflet();" id = "locate-btn">LOCATE ME</button>
+    </header>
+
+    <!-- Toggle Sidebar-->
+
+    <div id = "toggle">
+        <button id = "toggle-btn">See Info!</button>
+    </div>
+    
+    <div id = "sidebar">
+        <table id = "country-info">
+            <tr>
+                <td align="right">
+                    City/Town:
+                </td>
+                <td id = "placename">
+
+                </td>
+            <tr>
+            <tr>
+                <td align="right">
+                Country:
+                </td>
+                <td id = "country">
+    
+                </td>
+            <tr>
+            <tr>
+                <td align="right">
+                    Flag:
+                </td>
+                <td id = "flag">
+
+                </td>
+            <tr>
+            <tr>
+                <td align="right">
+                    Continent:
+                </td>
+                <td id = "continent">
+
+                </td>
+            <tr>
+            <tr>
+                <td align="right">
+                    Currency:
+                </td>
+                <td id = "currency">
+    
+                </td>
+            <tr>
+        </table>
+
+        <table>
+            <tr>
+                <td align="right">
+                    Current Weather:
+                </td>
+                <td id = "weather">
+    
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <!-- Map -->
+
+    <div id="mapid">
+
+    </div>
+
+    <!-- Footer-->
+
+    <footer id = "footer">
+        <br>
+        Copyright &copy James Brierley 2020
+        <br>
+    </footer>
+
+    <!--<div id = "wrap"></div>-->
+    <!--<div id = "preloader"></div>-->
+
+    <script src ="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+    <script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="js/leaflet-providers.js"></script>
+    <script type="application/javascript" src="js/map-setup.js"></script>
+    <script type = "application/javascript" src="js/script.js"></script>
+    <!--<script type = "application/javascript" src = "js/jsoninfo.js"></script>-->
+       
+</body>
+
+</html>
