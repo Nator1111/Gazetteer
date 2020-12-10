@@ -1,112 +1,91 @@
-/*Elemental CSS*/
-* {
-    font-family: 'Poppins', sans-serif;
+/*Navbar Overrides*/
+
+.bg-dark {
+    background-color: #070059 !important;
 }
 
-body {
-    background-color: #500;
-}
-
-button:hover {
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-/*Splash page*/
-
-#splashdiv {
-    width:100%;
-    height: 100%;
-    text-align: center;
-    background-color: #500;
-    margin: 0;
-    position: fixed;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    z-index: 200;
-}
-
-#gazetteer-logo {
-    min-width: 450px;
-    min-height: 120px;
-    padding: 0;
-    position: relative;
-    margin-top: 200px;
-}
-
-#splash-text {
-    font-size: 1.75em;
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2em;
+    font-family: 'Poppins',sans-serif;
     color: white;
 }
 
-#splash-button {
-    min-width: 100px;
-    min-height: 50px;
-    font-size: 1.2em;
-    background-color: #500;
-    color: lightblue;
-    font-weight: bold;
-    border: 3px solid lightblue;
-    
+.navbar-dark .navbar-nav .nav-link{
+
+    text-transform: uppercase;
 }
 
-/*Header*/
-
-#header {
-    background-color: #500;
-    padding-bottom: 5px;
-    border-bottom: 5px solid lightblue;
+.navbar-dark .navbar-nav .nav-item {
+    margin: 0 15px;
 }
 
-#locate-btn {
-    width: 200px;
-    height: 75px;
-    background-color: #500;
-    color: lightblue;
-    font-weight: bold;
-    border: 3px solid lightblue;
-    margin-top: 10px;
-    float: right;
-    font-size: 1.5em;
-}
-
-/*Sidebar info*/
-
-#sidebar
-{
-    all:unset;
-    display: none;
-    
-}
-
-
-#country-info {
-    all: unset;
-    border: 3px solid lightblue;
-    color: #FFF;
+#selectCountry {
+    margin-top: 5px;
     padding: 10px;
-    border-collapse: collapse;
 }
 
 /*Map*/
 
 #mapid {
     height: 600px;
-    border-bottom: 5px solid lightblue;
+    width: 100%;
+    Height: calc(100vh – 74);
+}
+
+/*table*/
+
+#table {
+    position: absolute;
+    left: 5px;
+    top: 170px;
+    max-width: 50%;
     background-color: white;
-    z-index:199;
+    z-index: 9999;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px rgba(0,0,0,0.3);
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
-/*Footer*/
-
-#footer {
-    min-height: 50px;
-    background-color: #500;
-    color: white;
+#thead {
+    border-bottom: 2px solid #070059;
+    font-weight: bold;
+    font-size: 15px;
 }
 
-/*#preloader {  
+tbody {
+    font-size: 10px;
+}
+
+td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+tr {
+    border-bottom: 1px solid lightgray;
+}
+
+.bullet {
+    height: 10px;
+    width: 10px;
+}
+
+#country {
+    padding: 5px;
+}
+
+#flag {
+    padding: 10px;
+}
+
+/*preloader*/
+
+#preloader {  
     position: fixed;  
     top: 0;  
     left: 0;  
@@ -149,5 +128,5 @@ button:hover {
         -webkit-transform: rotate(360deg);    
         transform: rotate(360deg);  
     }
-}*/
+}
 

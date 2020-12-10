@@ -8,120 +8,325 @@
     <meta name="description" content="App That Returns Country Information">
 	<meta name="author" content="James Brierley">
 
-    <link href = "favicon-16x16.png" rel="icon">
-    <link href = "vendors/bootstrap-4.5.3-dist/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href = "favicon.png" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    crossorigin=""/>
    <link rel ="stylesheet" type = "text/css" href="./css/Style.css">
-   <link rel ="stylesheet" type = "text/css" href="./css/normalize.css">
+   
 
 </head>
 <body>
-    <!--Splash page -->
-    
-    <div id = "splashdiv" >
-        <img class = "splash-info" src = "images/Gazetteer.png" alt = "Gazetteer logo" ID = "gazetteer-logo">
-        <p class = "splash-info" id = "splash-text">PRESS ENTER TO BEGIN:</p>
-        <button class = "splash-info" id="splash-button">ENTER</button>  
-    </div>
-    
-    <!-- Header -->
-    <header id = "header">
-        <img src = "images/Gazetteer.png" alt = "Gazetteer Logo">
-        <button onclick = "getLocationLeaflet();" id = "locate-btn">LOCATE ME</button>
-    </header>
-
-    <!-- Toggle Sidebar-->
-
-    <div id = "toggle">
-        <button id = "toggle-btn">See Info!</button>
-    </div>
-    
-    <div id = "sidebar">
-        <table id = "country-info">
-            <tr>
-                <td align="right">
-                    City/Town:
-                </td>
-                <td id = "placename">
-
-                </td>
-            <tr>
-            <tr>
-                <td align="right">
-                Country:
-                </td>
-                <td id = "country">
-    
-                </td>
-            <tr>
-            <tr>
-                <td align="right">
-                    Flag:
-                </td>
-                <td id = "flag">
-
-                </td>
-            <tr>
-            <tr>
-                <td align="right">
-                    Continent:
-                </td>
-                <td id = "continent">
-
-                </td>
-            <tr>
-            <tr>
-                <td align="right">
-                    Currency:
-                </td>
-                <td id = "currency">
-    
-                </td>
-            <tr>
-        </table>
-
-        <table>
-            <tr>
-                <td align="right">
-                    Current Weather:
-                </td>
-                <td id = "weather">
-    
-                </td>
-            </tr>
-        </table>
-    </div>
+    <!--Bootstrap Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class = "container">
+        <a class="navbar-brand" href="#">Gazetteer</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Col-auto Start-->
+        <div class = "col-auto">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <select id = "selectCountry" aria-labelledby="navbarDropdown" style = "padding: 10px;"> </select>
+                  
+            </select>
+          </ul>
+        </div>
+      </div>
+      <!--Col-auto end-->
+      </div>
+      </nav>
     
     <!-- Map -->
+    
+      <div id="mapid">
 
-    <div id="mapid">
+      </div>
 
-    </div>
+      <div id="table">
+        <table>
+          <thead id = 'thead'>
+            <tr>
+              <td id = "flag">
+                Country Information
+              </td>
+              <td id = "country">
+                
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td align="left">
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Native name
+              </td>
+              <td id = "native" align="right">
 
-    <!-- Footer-->
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Capital City
+              </td>
+              <td id = "capital" align="right">
 
-    <footer id = "footer">
-        <br>
-        Copyright &copy James Brierley 2020
-        <br>
-    </footer>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Region
+              </td>
+              <td id = "region" align="right">
 
-    <!--<div id = "wrap"></div>-->
-    <!--<div id = "preloader"></div>-->
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Sub-Region
+              </td>
+              <td id = "subregion" align="right">
 
-    <script src ="vendors/jquery/dist/jquery.min.js"></script>
-    <script src="vendors/bootstrap-4.5.3-dist/js/bootstrap.bundle.min.js"></script>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Demonym
+              </td>
+              <td id = "demonym" align="right"> 
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Main Language
+              </td>
+              <td id = "language" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Currency
+              </td>
+              <td id = "currency" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Calling code
+              </td>
+              <td id = "callcode" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Timezone
+              </td>
+              <td id = "timezone" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Population
+              </td>
+              <td id = "population" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Latitude
+              </td>
+              <td id = "latitude" align="right" step = ".01">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Longitude
+              </td>
+              <td id = "longitude" align="right" step = ".01">
+
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span style = "font-weight: bold;">Current Covid Data:</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                New Cases
+              </td>
+              <td id = "newCases" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Confirmed Cases
+              </td>
+              <td id = "confirmedCases" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                New Deaths
+              </td>
+              <td id = "newDeaths" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Total Deaths
+              </td>
+              <td id = "totalDeaths" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span style = "font-weight: bold;">Current Weather in Capital:</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Sky Conditions
+              </td>
+              <td id = "weather" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Temperature
+              </td>
+              <td id = "temp" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Humidity
+              </td>
+              <td id = "humidity" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Wind Speed
+              </td>
+              <td id = "windspeed" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Pressure
+              </td>
+              <td id = "pressure" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span style = "font-weight: bold;">Top News Stories:</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Article 1:
+              </td>
+              <td id = "news1" align="right">
+                
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Article 2:
+              </td>
+              <td id = "news2" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <img src = "images/amazon.png" attribute = "Freepik" class = "bullet">
+                Article 3:
+              </td>
+              <td id = "news3" align="right">
+
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span style = "font-weight: bold;">Photos of the Capital:</span>
+              </td>
+            </tr>
+            <tr style = "border-bottom: none;">
+              <td id = "photos1">
+
+              </td>
+            </tr>
+            <tr style = "border-bottom: none;">
+              <td id = "photos2">
+
+              </td>
+            </tr>
+            <tr style = "border-bottom: none;">
+              <td id = "photos3">
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    <div id = "wrap"></div>
+    <div id = "preloader"></div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    crossorigin=""></script>
     <script src="http://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
-    <script src="js/leaflet-providers.js"></script>
+   
     <script type="application/javascript" src="js/map-setup.js"></script>
-    <script type = "application/javascript" src="js/script.js"></script>
-    <!--<script type = "application/javascript" src = "js/jsoninfo.js"></script>-->
        
 </body>
 
