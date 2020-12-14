@@ -10,6 +10,7 @@
     font-size: 2em;
     font-family: 'Poppins',sans-serif;
     color: white;
+    left: 5px;
 }
 
 .navbar-dark .navbar-nav .nav-link{
@@ -23,24 +24,21 @@
 
 #selectCountry {
     margin-top: 5px;
-    padding: 10px;
 }
 
 /*Map*/
 
 #mapid {
-    height: 600px;
     width: 100%;
-    Height: calc(100vh – 74);
+    height: calc(100vh – 74);
 }
 
 /*table*/
 
-#table {
+/*#countryInfoTable {
     position: absolute;
     left: 5px;
     top: 170px;
-    max-width: 50%;
     background-color: white;
     z-index: 9999;
     border-radius: 10px;
@@ -49,25 +47,36 @@
     height: 400px;
     overflow-y: scroll;
     overflow-x: scroll;
+}*/
+
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    height: 80%;
+    overflow-x: scroll;
+  }
+
+#closebtn {
+    background-color: #070059;
 }
 
-#thead {
-    border-bottom: 2px solid #070059;
+#countryInfoTableHead {
     font-weight: bold;
     font-size: 15px;
+    width: 100%;
 }
 
-tbody {
+#countryInfoTableBody {
     font-size: 10px;
+    width: 100%;
 }
 
 td {
     padding-top: 5px;
     padding-bottom: 5px;
-}
-
-tr {
-    border-bottom: 1px solid lightgray;
 }
 
 .bullet {
@@ -130,3 +139,12 @@ tr {
     }
 }
 
+@media only screen 
+  and (max-width: 375px) 
+  {
+
+    .navbar-brand,#selectCountry {
+        font-size: 1.1em;
+    }
+
+  }

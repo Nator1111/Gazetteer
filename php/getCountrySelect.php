@@ -23,6 +23,8 @@
                                 $temp['code'] = $feature["properties"]['iso_a2'];
 
                                 $temp['name'] = $feature["properties"]['name'];
+
+                                //$temp['border'] = $feature;
  
 
                                 array_push($country, $temp);
@@ -43,7 +45,24 @@
 
                 });
 
- 
+                //Reverse geocode
+
+                $lat = isset($_POST['lat']) ? $_POST['lat'] : NULL;
+                $lon = isset($_POST['lon']) ? $_POST['lat'] : NULL;
+
+                $url = 'http://api.geonames.org/countryCode?lat=' . $lat .'&lng=' . $lon . '&username=nator1111';
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_URL, $url);
+
+                $result=curl_exec($ch);
+
+                curl_close($ch);
+
+                $reverseCodeInfo = json_decode($result,true);
+
 
                 $output['status']['code'] = "200";
 
@@ -54,6 +73,9 @@
                 $output['status']['executedIn'] = intval((microtime(true) - $executionStartTime) * 1000) . " ms";
 
                 $output['data'] = $country;
+
+                $output['data']['reverseCodeInfo'] = $reverseCodeInfo;
+
 
                
 
