@@ -72,7 +72,7 @@
 
                 $output['status']['executedIn'] = intval((microtime(true) - $executionStartTime) * 1000) . " ms";
 
-                $output['data'] = $country;
+                $output['data']['selectData'] = $country;
 
                 $output['data']['reverseCodeInfo'] = $reverseCodeInfo;
 

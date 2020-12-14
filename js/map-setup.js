@@ -163,11 +163,11 @@ $(document).ready(function() {
 
                 $('#selectCountry').append($("<option> -- Select Country -- </option>"));
 
-                $.each(result.data, function(index) {
+                $.each(result.data.selectData, function(index) {
                     $('#selectCountry').append($("<option>", {
 
-                        value: result.data[index].code,
-                        text: result.data[index].name
+                        value: result.data.selectData[index].code,
+                        text: result.data.selectData[index].name
                     }));
                 });
 
@@ -187,9 +187,9 @@ $(document).ready(function() {
                             lat: position.coords.latitude
                         },
                         success: function(){
-                            if(result['data']['code'] == result['data']['reverseCodeInfo']['results'][0]['components']['ISO_3166-1_alpha-2']){
+                            if(result['data']['reverseCodeInfo'] == result['data']['selectData']['code']){
                                 
-                                $('#selectCountry').val() = result['data']['code'];
+                                $('#selectCountry').val() = result['data']['reverseCodeInfo'];
                                 
                                 mymap.locate({
                                     setView: true,
