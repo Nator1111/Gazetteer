@@ -264,10 +264,10 @@ $("#selectCountry").change(function() {
 				    $('#humidity').html(roundDown(result['data']['border']['weather']['main']['humidity']) + " %");
                     $('#windspeed').html(roundDown(result['data']['border']['weather']['wind']['speed']) + " km/h");
                     $('#pressure').html(roundDown(result['data']['border']['weather']['main']['pressure']) + " Bar" );
-                    $('#newCases').html(numberWithCommas(result['data']['border']['covidData']['NewConfirmed']));
+                    /*$('#newCases').html(numberWithCommas(result['data']['border']['covidData']['NewConfirmed']));
                     $('#confirmedCases').html(numberWithCommas(result['data']['border']['covidData']['TotalConfirmed']));
                     $('#newDeaths').html(numberWithCommas(result['data']['border']['covidData']['NewDeaths']));
-                    $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));
+                    $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));*/
                     
                     var capital = [
                         [result['data']['border']['weather']['name'], result['data']['border']['weather']['coord']['lat'], result['data']['border']['weather']['coord']['lon'], result['data']['border']['cities']['geonames'][0]['population'], result['data']['border']['weather']['weather'][0]['icon'], result['data']['border']['weather']['main']['temp_max'], result['data']['border']['weather']['main']['temp_min']]
@@ -384,10 +384,10 @@ $("#selectCountry").change(function() {
 				    $('#humidity').html(roundDown(result['data']['border']['weather']['main']['humidity']) + " %");
                     $('#windspeed').html(roundDown(result['data']['border']['weather']['wind']['speed']) + " km/h");
                     $('#pressure').html(roundDown(result['data']['border']['weather']['main']['pressure']) + " Bar" );
-                    $('#newCases').html(numberWithCommas(result['data']['border']['covidData']['NewConfirmed']));
+                    /*$('#newCases').html(numberWithCommas(result['data']['border']['covidData']['NewConfirmed']));
                     $('#confirmedCases').html(numberWithCommas(result['data']['border']['covidData']['TotalConfirmed']));
                     $('#newDeaths').html(numberWithCommas(result['data']['border']['covidData']['NewDeaths']));
-                    $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));
+                    $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));*/
                     $('#photos1').html("<img style = 'height: 85px; width: 85px;' src = '" + result['data']['border']['city0Photos']['hits'][0]['previewURL'] + "'></img>");
                     $('#photos2').html("<img style = 'height: 85px; width: 85px;' src = '" + result['data']['border']['city0Photos']['hits'][1]['previewURL'] + "'></img>");
                     $('#photos3').html("<img style = 'height: 85px; width: 85px;' src = '" + result['data']['border']['city0Photos']['hits'][2]['previewURL'] + "'></img>");
