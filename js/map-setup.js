@@ -178,24 +178,27 @@ $(document).ready(function() {
                 if (navigator.geolocation) {
 
                     navigator.geolocation.getCurrentPosition(function(position) {
-         
+                        
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+                        
                        $.ajax({
                         type:"POST",
                         url:"php/getCountrySelect.php",
                         data: {
-                            lon: position.coords.longitude,
-                            lat: position.coords.latitude
+                            lat: lat,
+                            lon: lon
                         },
                         success: function(){
-                            if(result['data']['reverseCodeInfo'] == result['data']['selectData']['code']){
+                            if (result.status.name == "ok"){
+                                console.log(lat + ', ' + lon);
+                                $('#selectCountry').val(result['data']['reverseCodeInfo']);
                                 
-                                $('#selectCountry').val() = result['data']['reverseCodeInfo'];
-                                
-                                mymap.locate({
+                                /*mymap.locate({
                                     setView: true,
                                     maxZoom: 5,
                                     paddingTopLeft: [200, 0]
-                                });
+                                });*/
                             }
                         }
                      });
@@ -292,15 +295,9 @@ $("#selectCountry").change(function() {
                                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                                "<td align = 'center' colspan = '2'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + capital[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
-                                            "</tr>"+
-                                            "<tr>" +
-                                                "<td><b>Max Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(capital[i][5])) + " °C" + "<br/>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                                "<td><b>Min Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" +
+                                            "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + capital[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                                            "<td align='left'>" + roundDown(convertToCelsius(capital[i][5])) + " °C" + "<br/>" +
+                                            roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" + "</td>" +
                                             "</tr>"+
                                         "</table>")
                             .addTo( mymap )
@@ -333,15 +330,9 @@ $("#selectCountry").change(function() {
                                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                                "<td align = 'center' colspan = '2'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + cities[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
-                                            "</tr>"+
-                                            "<tr>" +
-                                                "<td><b>Max Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(cities[i][5])) + " °C" + "<br/>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                                "<td><b>Min Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" +
+                                                "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + cities[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                                                "<td align='left'>" + roundDown(convertToCelsius(cities[i][5])) + " °C" + "<br/>" +
+                                                roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" + "</td>" +
                                             "</tr>"+
                                         "</table>"
                                       )
@@ -419,15 +410,9 @@ $("#selectCountry").change(function() {
                                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
                                             "</tr>" +
                                             "<tr>" +
-                                                "<td align = 'center' colspan = '2'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + capital[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
-                                            "</tr>"+
-                                            "<tr>" +
-                                                "<td><b>Max Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(capital[i][5])) + " °C" + "<br/>" +
-                                            "</tr>" +
-                                            "<tr>" +
-                                                "<td><b>Min Temp. </b></td>" + 
-                                                "<td align='right'>" + roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" +
+                                                "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + capital[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                                                "<td align='left'>" + roundDown(convertToCelsius(capital[i][5])) + " °C" + "<br/>" +
+                                                roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" + "</td>" +
                                             "</tr>"+
                                             "<tr>" +
                                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Phptos: </td>" +
@@ -465,15 +450,9 @@ $("#selectCountry").change(function() {
                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
                             "</tr>" +
                             "<tr>" +
-                                "<td align = 'center' colspan = '2'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + cities[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
-                            "</tr>"+
-                            "<tr>" +
-                                "<td><b>Max Temp. </b></td>" + 
-                                "<td align='right'>" + roundDown(convertToCelsius(cities[i][5])) + " °C" + "<br/>" +
-                            "</tr>" +
-                            "<tr>" +
-                                "<td><b>Min Temp. </b></td>" + 
-                                "<td align='right'>" + roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" +
+                            "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + cities[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                            "<td align='left'>" + roundDown(convertToCelsius(cities[i][5])) + " °C" + "<br/>" +
+                            roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" + "</td>" +
                             "</tr>"+
                             "<tr>" +
                                 "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Phptos: </td>" +
