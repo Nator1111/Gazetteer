@@ -188,7 +188,7 @@
     
     //Covid Data
     
-    /*$url10='https://api.covid19api.com/summary';
+    $url10='https://api.covid19api.com/summary';
 
     $ch10 = curl_init();
 	curl_setopt($ch10, CURLOPT_SSL_VERIFYPEER, false);
@@ -208,7 +208,7 @@
             $covidData = $countries;
             };
         };
-    */
+    
     //Capital City Photos
     
     $url11='https://pixabay.com/api/?key=19327417-0a58d65c197905d7f1584ff0a&q=' . $capitalCity . '&image_type=photo';
@@ -314,7 +314,7 @@
     $output['data']['border']['city2Weather'] = $city2Weather;
     $output['data']['border']['city3Weather'] = $city3Weather;   
     $output['data']['border']['city4Weather'] = $city4Weather;  
-    //$output['data']['border']['covidData'] = $covidData;   
+    $output['data']['border']['covidData'] = $covidData;   
     $output['data']['border']['city0Photos'] = $photos0;  
     $output['data']['border']['city1Photos'] = $photos1;  
     $output['data']['border']['city2Photos'] = $photos2;  

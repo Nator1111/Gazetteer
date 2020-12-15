@@ -56,8 +56,16 @@
     transform: translate(-50%, -50%);
     width: 75%;
     height: 80%;
-    overflow-x: scroll;
   }
+
+.moda-dialog {
+    overflow-x: initial !important;
+}
+
+.modal-body{
+    height: 100vh;
+    overflow-x: auto;
+}
 
 #closebtn {
     background-color: #070059;

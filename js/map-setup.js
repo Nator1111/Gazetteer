@@ -439,7 +439,7 @@ $(document).ready(function() {
                         
                        $.ajax({
                         type:"POST",
-                        url:"php/getCountrySelect.php",
+                        url:"php/getCountryCode.php",
                         data: {
                             lat: lat,
                             lon: lon
@@ -447,7 +447,7 @@ $(document).ready(function() {
                         success: function(){
                             if (result.status.name == "ok"){
                                 console.log(lat + ', ' + lon);
-                                $('#selectCountry').val(result['data']['reverseCodeInfo']['countryCode']);
+                                $('#selectCountry').val(result['data']['reverseCodeInfo']['countryCode']).change();
                                 
                                 mymap.locate({
                                     setView: true,
