@@ -184,7 +184,7 @@ $(document).ready(function() {
                         
                        $.ajax({
                         type:"POST",
-                        url:"php/getCountrySelect.php",
+                        url:"php/reversegeocode.php",
                         data: {
                             lat: lat,
                             lon: lon
@@ -192,13 +192,13 @@ $(document).ready(function() {
                         success: function(){
                             if (result.status.name == "ok"){
                                 console.log(lat + ', ' + lon);
-                                $('#selectCountry').val(result['data']['reverseCodeInfo']);
+                                $('#selectCountry').val(result['data']['countryCode']);
                                 
-                                /*mymap.locate({
+                                mymap.locate({
                                     setView: true,
                                     maxZoom: 5,
                                     paddingTopLeft: [200, 0]
-                                });*/
+                                });
                             }
                         }
                      });

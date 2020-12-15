@@ -1,7 +1,7 @@
 <?php
 
  
-                  
+                ini_set('display_errors', 'On');  
                 $executionStartTime = microtime(true);
 
  
@@ -47,10 +47,12 @@
 
                 //Reverse geocode
 
-                $lat = isset($_POST['lat']) ? $_POST['lat'] : NULL;
-                $lon = isset($_POST['lon']) ? $_POST['lat'] : NULL;
+                $lat = isset($_POST['lat']) ? $_POST['lat'] : 51;
+                $lon = isset($_POST['lon']) ? $_POST['lat'] : -1;
 
-                $url = 'http://api.geonames.org/countryCode?lat=' . $lat .'&lng=' . $lon . '&username=nator1111';
+                //echo $lat;
+
+                $url = 'http://api.geonames.org/countryCode?lat=' . $lat . '&lng=' . $lon . '&username=nator1111&type=JSON';
 
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
