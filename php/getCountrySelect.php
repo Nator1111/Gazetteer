@@ -45,6 +45,26 @@
 
                 });
 
+                //Reverse geocode
+
+                $lat = isset($_POST['lat']) ? $_POST['lat'] : 51;
+                $lon = isset($_POST['lon']) ? $_POST['lat'] : -1;
+
+                //echo $lat;
+
+                $url = 'http://api.geonames.org/countryCode?lat=' . $lat . '&lng=' . $lon . '&username=nator1111&type=JSON';
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_URL, $url);
+
+                $result=curl_exec($ch);
+
+                curl_close($ch);
+
+                $reverseCodeInfo = json_decode($result,true);
+
 
                 $output['status']['code'] = "200";
 
@@ -56,7 +76,9 @@
 
                 $output['data']['selectData'] = $country;
 
-                
+                $output['data']['reverseCodeInfo'] = $reverseCodeInfo;
+
+
                
 
                 header('Content-Type: application/json; charset=UTF-8');

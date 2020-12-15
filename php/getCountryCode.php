@@ -7,7 +7,7 @@
                 //Reverse geocode
 
                 $lat = isset($_POST['lat']) ? $_POST['lat'] : 51;
-                $lon = isset($_POST['lon']) ? $_POST['lat'] : -1;
+                $lon = isset($_POST['lon']) ? $_POST['lon'] : -1;
 
                 //echo $lat;
 
