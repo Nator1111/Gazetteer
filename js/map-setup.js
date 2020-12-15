@@ -144,82 +144,6 @@ var myStyle = {
     "opacity": 0.65
 };
 
-/*Populate dropdown and geolocate client*/
-
-$(document).ready(function() {
-
-    $.ajax({
-        url: "php/getCountrySelect.php",
-        type: 'POST',
-        dataType: 'json',
-
-        success: function(result) {
-
-            console.log(result);
-
-            if (result.status.name == "ok") {
-
-                /*Populate Dropdown Menu*/
-
-                $('#selectCountry').append($("<option> -- Select Country -- </option>"));
-
-                $.each(result.data.selectData, function(index) {
-                    $('#selectCountry').append($("<option>", {
-
-                        value: result.data.selectData[index].code,
-                        text: result.data.selectData[index].name
-                    }));
-                });
-
-                /*Get Geolocation*/
-
-                //navigator.geolocation.getCurrentPosition(success, error);
-
-                if (navigator.geolocation) {
-
-                    navigator.geolocation.getCurrentPosition(function(position) {
-                        
-                        var lat = position.coords.latitude;
-                        var lon = position.coords.longitude;
-                        
-                       $.ajax({
-                        type:"POST",
-                        url:"php/reversegeocode.php",
-                        data: {
-                            lat: lat,
-                            lon: lon
-                        },
-                        success: function(){
-                            if (result.status.name == "ok"){
-                                console.log(lat + ', ' + lon);
-                                $('#selectCountry').val(result['data']['countryCode']);
-                                
-                                mymap.locate({
-                                    setView: true,
-                                    maxZoom: 5,
-                                    paddingTopLeft: [200, 0]
-                                });
-                            }
-                        }
-                     });
-                                           
-                   });
-           
-               } else {
-           
-                  alert("Geo Location not supported by this device");
-                   }
-        
-        }
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(`This request returned an error jqHXR: ${jqXHR}, 
-        textStatus: ${textStatus}, 
-        errorThrown: ${errorThrown}`);
-        }
-    });
-});
 
 $("#selectCountry").change(function() {
 
@@ -474,5 +398,84 @@ $("#selectCountry").change(function() {
         }
     });
 });
+
+/*Populate dropdown and geolocate client*/
+
+$(document).ready(function() {
+
+    $.ajax({
+        url: "php/getCountrySelect.php",
+        type: 'POST',
+        dataType: 'json',
+
+        success: function(result) {
+
+            console.log(result);
+
+            if (result.status.name == "ok") {
+
+                /*Populate Dropdown Menu*/
+
+                $('#selectCountry').append($("<option> -- Select Country -- </option>"));
+
+                $.each(result.data.selectData, function(index) {
+                    $('#selectCountry').append($("<option>", {
+
+                        value: result.data.selectData[index].code,
+                        text: result.data.selectData[index].name
+                    }));
+                });
+
+                /*Get Geolocation*/
+
+                //navigator.geolocation.getCurrentPosition(success, error);
+
+                if (navigator.geolocation) {
+
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        
+                        var lat = position.coords.latitude;
+                        var lon = position.coords.longitude;
+                        
+                       $.ajax({
+                        type:"POST",
+                        url:"php/getCountrySelect.php",
+                        data: {
+                            lat: lat,
+                            lon: lon
+                        },
+                        success: function(){
+                            if (result.status.name == "ok"){
+                                console.log(lat + ', ' + lon);
+                                $('#selectCountry').val(result['data']['reverseCodeInfo']['countryCode']);
+                                
+                                mymap.locate({
+                                    setView: true,
+                                    maxZoom: 5,
+                                    paddingTopLeft: [200, 0]
+                                });
+                            }
+                        }
+                     });
+                                           
+                   });
+           
+               } else {
+           
+                  alert("Geo Location not supported by this device");
+                   }
+        
+        }
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(`This request returned an error jqHXR: ${jqXHR}, 
+        textStatus: ${textStatus}, 
+        errorThrown: ${errorThrown}`);
+        }
+    });
+});
+
+
 
                 
