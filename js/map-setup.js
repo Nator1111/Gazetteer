@@ -195,6 +195,12 @@ $("#selectCountry").change(function() {
                     $('#confirmedCases').html(numberWithCommas(result['data']['border']['covidData']['TotalConfirmed']));
                     $('#newDeaths').html(numberWithCommas(result['data']['border']['covidData']['NewDeaths']));
                     $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));
+                    $('#photos1').html("Photos N/A");
+                    $('#photos2').html("Photos N/A");
+                    $('#photos3').html("Photos N/A");
+                    $('#news1').html("News N/A");
+                    $('#news2').html("News N/A");
+                    $('#news3').html("News N/A");
                     
                     var capital = [
                         [result['data']['border']['weather']['name'], result['data']['border']['weather']['coord']['lat'], result['data']['border']['weather']['coord']['lon'], result['data']['border']['cities']['geonames'][0]['population'], result['data']['border']['weather']['weather'][0]['icon'], result['data']['border']['weather']['main']['temp_max'], result['data']['border']['weather']['main']['temp_min']]
@@ -298,6 +304,13 @@ $("#selectCountry").change(function() {
                         $('#confirmedCases').html(numberWithCommas(result['data']['border']['covidData']['TotalConfirmed']));
                         $('#newDeaths').html(numberWithCommas(result['data']['border']['covidData']['NewDeaths']));
                         $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));
+                        $('#photos1').html("Photos N/A");
+                        $('#photos2').html("Photos N/A");
+                        $('#photos3').html("Photos N/A");
+                        $('#news1').html("News N/A");
+                        $('#news2').html("News N/A");
+                        $('#news3').html("News N/A");
+
                         
                         var capital = [
                             [result['data']['border']['weather']['name'], result['data']['border']['weather']['coord']['lat'], result['data']['border']['weather']['coord']['lon'], result['data']['border']['cities']['geonames'][0]['population'], result['data']['border']['weather']['weather'][0]['icon'], result['data']['border']['weather']['main']['temp_max'], result['data']['border']['weather']['main']['temp_min']]
