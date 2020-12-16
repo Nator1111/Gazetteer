@@ -30,7 +30,7 @@
 
 #mapid {
     width: 100%;
-    height: calc(100vh – 74);
+    max-height: calc(100vh – 74px);
 }
 
 /*table*/
@@ -56,15 +56,17 @@
     transform: translate(-50%, -50%);
     width: 75%;
     height: 80%;
+    overflow: hidden !important;
   }
 
-.moda-dialog {
-    overflow-x: initial !important;
+.modal-content {
+    max-height: calc(100vh - 200px) !important;
 }
 
 .modal-body{
     height: 100vh;
     overflow-x: auto;
+    overflow-y: scroll;
 }
 
 #closebtn {

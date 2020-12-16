@@ -159,8 +159,8 @@ $("#selectCountry").change(function() {
 
             console.log(result);
 
-            switch(result['data']['border']['news']['totalResults']) {
-                case 0:
+            if(result['data']['border']['news']['totalResults'] == 0 || result['data']['border']['city0Photos']['total'] == 0 || result['data']['border']['city1Photos']['total'] == 0 || result['data']['border']['city2Photos']['total'] == 0 || result['data']['border']['city3Photos']['total'] == 0 || result['data']['border']['city4Photos']['total'] == 0) {
+                
                     var geoJSON = L.geoJSON(result['data']['border'], {
                         style: myStyle
                     }).addTo(mymap);
@@ -262,10 +262,112 @@ $("#selectCountry").change(function() {
                                       )
                             .addTo( mymap );
                         };
-                    break;
-
-                default:
-
+                    } else if (result['data']['border']['countryInfo']['status'] == 404) {
+                
+                        var geoJSON = L.geoJSON(result['data']['border'], {
+                            style: myStyle
+                        }).addTo(mymap);
+    
+                        mymap.fitBounds(geoJSON.getBounds(), {
+                            padding: [20,20]
+                        });
+    
+                        $('#myModal').modal('show');
+    
+                        $('#flag').html("Flag N/A");
+                        $('#country').html(result['data']['border']['properties']['name']);
+                        $('#native').html(result['data']['border']['cities']['geonames'][0]['countryName']);
+                        $('#capital').html(result['data']['border']['capital']);
+                        $('#region').html("Region N/A");
+                        $('#subregion').html("subregion N/A");
+                        $('#demonym').html("Denonym N/A");
+                        $('#language').html("Language N/A");
+                        $('#currency').html("Currency N/A");
+                        $('#callcode').html("Callcode N/A");
+                        $('#language').html("Language N/A");
+                        $('#timezone').html("Timezone N/A");
+                        $('#latitude').html(roundDown(result['data']['border']['weather']['coord']['lat']));
+                        $('#longitude').html(roundDown(result['data']['border']['weather']['coord']['lat']));
+                        $('#population').html(numberWithCommas("Population N/A"));
+                        $('#weather').html("<img style = 'height: 40px; width: 40px;' src = 'http://openweathermap.org/img/wn/" + result['data']['border']['weather']['weather'][0]['icon'] + "@2x.png'></img>");
+                        $('#temp').html(roundDown(convertToCelsius(result['data']['border']['weather']['main']['temp'])) + " °C");
+                        $('#humidity').html(roundDown(result['data']['border']['weather']['main']['humidity']) + " %");
+                        $('#windspeed').html(roundDown(result['data']['border']['weather']['wind']['speed']) + " km/h");
+                        $('#pressure').html(roundDown(result['data']['border']['weather']['main']['pressure']) + " Bar" );
+                        $('#newCases').html(numberWithCommas(result['data']['border']['covidData']['NewConfirmed']));
+                        $('#confirmedCases').html(numberWithCommas(result['data']['border']['covidData']['TotalConfirmed']));
+                        $('#newDeaths').html(numberWithCommas(result['data']['border']['covidData']['NewDeaths']));
+                        $('#totalDeaths').html(numberWithCommas(result['data']['border']['covidData']['TotalDeaths']));
+                        
+                        var capital = [
+                            [result['data']['border']['weather']['name'], result['data']['border']['weather']['coord']['lat'], result['data']['border']['weather']['coord']['lon'], result['data']['border']['cities']['geonames'][0]['population'], result['data']['border']['weather']['weather'][0]['icon'], result['data']['border']['weather']['main']['temp_max'], result['data']['border']['weather']['main']['temp_min']]
+                        ];
+    
+                        for ( var i=0; i < capital.length; ++i ) 
+                        {
+                            L.marker( [capital[i][1], capital[i][2]], {icon: crown} )
+                                .bindPopup( "<table style = 'border: collapse'> " +
+                                                "<tr>"+
+                                                    "<td style= 'font-size: 15px; font-weight: bold;' colspan = '2'>" + capital[i][0] + " - CAPITAL</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td> <b> Lat/Lan. </b> </td>" + 
+                                                    "<td step = '.01' align='right'>(" + capital[i][1] + ", " + capital[i][2] + ")</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td><b>Population </b></td>" +
+                                                    "<td align='right'>" + numberWithCommas(capital[i][3]) + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + capital[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                                                "<td align='left'>" + roundDown(convertToCelsius(capital[i][5])) + " °C" + "<br/>" +
+                                                roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" + "</td>" +
+                                                "</tr>"+
+                                            "</table>")
+                                .addTo( mymap )
+                        }
+    
+                        var cities = [
+                            [result['data']['border']['cities']['geonames'][1]['toponymName'], result['data']['border']['cities']['geonames'][1]['lat'], result['data']['border']['cities']['geonames'][1]['lng'], result['data']['border']['cities']['geonames'][1]['population'], result['data']['border']['city1Weather']['weather'][0]['icon'], result['data']['border']['city1Weather']['main']['temp_max'], result['data']['border']['city1Weather']['main']['temp_min']],
+                            [result['data']['border']['cities']['geonames'][2]['toponymName'], result['data']['border']['cities']['geonames'][2]['lat'], result['data']['border']['cities']['geonames'][2]['lng'], result['data']['border']['cities']['geonames'][2]['population'], result['data']['border']['city2Weather']['weather'][0]['icon'], result['data']['border']['city2Weather']['main']['temp_max'], result['data']['border']['city2Weather']['main']['temp_min']],
+                            [result['data']['border']['cities']['geonames'][3]['toponymName'], result['data']['border']['cities']['geonames'][3]['lat'], result['data']['border']['cities']['geonames'][3]['lng'], result['data']['border']['cities']['geonames'][3]['population'], result['data']['border']['city3Weather']['weather'][0]['icon'], result['data']['border']['city3Weather']['main']['temp_max'], result['data']['border']['city3Weather']['main']['temp_min']],
+                            [result['data']['border']['cities']['geonames'][4]['toponymName'], result['data']['border']['cities']['geonames'][6]['lat'], result['data']['border']['cities']['geonames'][6]['lng'], result['data']['border']['cities']['geonames'][4]['population'], result['data']['border']['city4Weather']['weather'][0]['icon'], result['data']['border']['city4Weather']['main']['temp_max'], result['data']['border']['city4Weather']['main']['temp_min']]
+                        ];
+    
+                        for ( var i=0; i < cities.length; ++i ) 
+                        {
+                            L.marker( [cities[i][1], cities[i][2]], {icon: icon} )
+                                .bindPopup( 
+                                            "<table style = 'border: collapse'> " +
+                                                "<tr>"+
+                                                    "<td style= 'font-size: 15px; font-weight: bold;' colspan = '2'>" + cities[i][0] + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td> <b> Lat/Lan. </b> </td>" + 
+                                                    "<td step = '.01' align='right'>(" + cities[i][1] + ", " + cities[i][2] + ")</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td><b>Population </b></td>" +
+                                                    "<td align='right'>" + numberWithCommas(cities[i][3]) + "</td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Weather: </td>" +
+                                                "</tr>" +
+                                                "<tr>" +
+                                                    "<td align = 'right'><img style = 'height: 50px; width: 50px;' src = 'http://openweathermap.org/img/wn/" + cities[i][4] + "@2x.png'></img>" + "<br/>" + "</td>" +
+                                                    "<td align='left'>" + roundDown(convertToCelsius(cities[i][5])) + " °C" + "<br/>" +
+                                                    roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" + "</td>" +
+                                                "</tr>"+
+                                            "</table>"
+                                          )
+                                .addTo( mymap );
+                            };
+                        } else {
+                
+                
                     var geoJSON = L.geoJSON(result['data']['border'], {
                         style: myStyle
                     }).addTo(mymap);
@@ -387,9 +489,8 @@ $("#selectCountry").change(function() {
                         "</table>")
                             .addTo( mymap );
                         };
-                    break;
                 };
-
+            
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(`This request returned an error jqHXR: ${jqXHR}, 
@@ -446,7 +547,7 @@ $(document).ready(function() {
                         },
                         success: function(){
                             if (result.status.name == "ok"){
-                                console.log(lat + ', ' + lon);
+                                //console.log(lat + ', ' + lon);
                                 $('#selectCountry').val(result['data']['reverseCodeInfo']['countryCode']).change();
                                 
                                 mymap.locate({
