@@ -28,9 +28,14 @@
 
 /*Map*/
 
+html, body{
+    overflow: hidden;
+    height: 100%;
+}
+
 #mapid {
     width: 100%;
-    max-height: calc(100vh – 74px);
+    max-height: calc(100vh - 56px);
     overflow: hidden !important;
 }
 
