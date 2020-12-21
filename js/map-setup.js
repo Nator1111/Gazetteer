@@ -45,10 +45,10 @@ var crown = L.icon({
 function success(pos) {
     var crd = pos.coords;
 
-    console.log('Your current position is:');
+    /*console.log('Your current position is:');
     console.log(`Latitude : ${crd.latitude}`);
     console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
+    console.log(`More or less ${crd.accuracy} meters.`);*/
     //console.log(pos);
 
     mymap.locate({
@@ -108,7 +108,7 @@ function createGeoJson(geoJson) {
     if(geoJsonLayer){
         mymap.removeLayer(geoJsonLayer);
         //console.log(capitalMarkers.length);
-        console.log('Citiesmarkers = ' + citiesMarkers.length);
+        //console.log('Citiesmarkers = ' + citiesMarkers.length);
         if(citiesMarkers.length == 8){
             mymap.removeLayer(citiesMarkers[0]);
             mymap.removeLayer(citiesMarkers[1]);
@@ -373,7 +373,7 @@ $("#selectCountry").change(function() {
 
         success: function(result) {
 
-            console.log(result);
+            //console.log(result);
 
             if(result['data']['border']['news']['totalResults'] == 0 || result['data']['border']['city0Photos']['total'] == 0 || result['data']['border']['city1Photos']['total'] == 0 || result['data']['border']['city2Photos']['total'] == 0 || result['data']['border']['city3Photos']['total'] == 0 || result['data']['border']['city4Photos']['total'] == 0) {
 
@@ -709,17 +709,13 @@ $("#selectCountry").change(function() {
                         $('#news3').html("<a style = 'color:  #070059;' href = '" + result['data']['border']['news']['articles'][2]['url'] + "' target='_blank'>"+ result['data']['border']['news']['articles'][2]['title'] + " </a>");
                         
 
-                        L.easyButton('<img src = "images/info.png" attribute = "Freepik" style="width:18px;">', () => {
-                            showModal();
-                        }).addTo(mymap);
-
                 };
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log(`This request returned an error jqHXR: ${jqXHR}, 
+            /*console.log(`This request returned an error jqHXR: ${jqXHR}, 
                textStatus: ${textStatus}, 
-               errorThrown: ${errorThrown}`);
+               errorThrown: ${errorThrown}`);*/
         }
     });
 });
@@ -735,7 +731,7 @@ $(document).ready(function() {
 
         success: function(result) {
 
-            console.log(result);
+            //console.log(result);
 
             if (result.status.name == "ok") {
 
@@ -787,14 +783,20 @@ $(document).ready(function() {
            
                   alert("Geo Location not supported by this device");
                    }
-        
+                
+                /*Add EasyButton to map*/
+
+                L.easyButton('<img src = "images/info.png" attribute = "Freepik" style="width:18px;">', () => {
+                    showModal();
+                }).addTo(mymap);
+
         }
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log(`This request returned an error jqHXR: ${jqXHR}, 
+            /*console.log(`This request returned an error jqHXR: ${jqXHR}, 
         textStatus: ${textStatus}, 
-        errorThrown: ${errorThrown}`);
+        errorThrown: ${errorThrown}`);*/
         }
     });
 });
