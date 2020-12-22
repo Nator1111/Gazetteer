@@ -626,7 +626,7 @@ $("#selectCountry").change(function() {
                                                             roundDown(convertToCelsius(capital[i][6])) + " °C" + "<br/>" + "</td>" +
                                                         "</tr>"+
                                                         "<tr>" +
-                                                            "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Phptos: </td>" +
+                                                            "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Photos: </td>" +
                                                         "</tr>"+
                                                         "<tr>" +    
                                                             "<td align = 'center' colspan= '2'><img style = 'height: 100px; width: 100px;' src ='" + capital[i][7] + "'></img></td>" +
@@ -661,7 +661,7 @@ $("#selectCountry").change(function() {
                                             roundDown(convertToCelsius(cities[i][6])) + " °C" + "<br/>" + "</td>" +
                                             "</tr>"+
                                             "<tr>" +
-                                                "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Phptos: </td>" +
+                                                "<td style= 'font-size: 12px; font-weight: bold;' colspan = '2'>Photos: </td>" +
                                             "</tr>"+
                                             "<tr>" +    
                                                 "<td align = 'center' colspan= '2'><img style = 'height: 100px; width: 100px;' src ='" + cities[i][7] + "'></img></td>" +
@@ -795,8 +795,8 @@ $(document).ready(function() {
         },
         error: function(jqXHR, textStatus, errorThrown) {
             /*console.log(`This request returned an error jqHXR: ${jqXHR}, 
-        textStatus: ${textStatus}, 
-        errorThrown: ${errorThrown}`);*/
+            textStatus: ${textStatus}, 
+            errorThrown: ${errorThrown}`);*/
         }
     });
 });
